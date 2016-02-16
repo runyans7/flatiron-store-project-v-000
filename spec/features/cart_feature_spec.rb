@@ -1,10 +1,12 @@
+require 'pry'
 describe 'Feature Test: Cart', :type => :feature do
+  include ActionView::Helpers
 
   describe "Checking out" do
 
     context "logged in" do
       before(:each) do
-        @user = User.first
+        @user = FactoryGirl.create(:user)
         @user.current_cart = @user.carts.create
         @current_cart = @user.current_cart
         @first_item = Item.first
@@ -16,6 +18,7 @@ describe 'Feature Test: Cart', :type => :feature do
 
      it "Lists all items in the cart" do
        visit cart_path(@user.current_cart)
+       binding.pry
        expect(page).to have_content(@first_item.title)
        expect(page).to have_content(@second_item.title)
      end

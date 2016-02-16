@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Cart, :type => :model do
   before(:each) do 
-    @item = Item.first
+    @item = FactoryGirl.create(:item)
+    @item2 = FactoryGirl.create(:item)
     @cart = Cart.create
     @line_item = @item.line_items.create(quantity: 1, cart: @cart)
   end
