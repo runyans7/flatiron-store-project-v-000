@@ -3,14 +3,15 @@
     <li><%= link_to "Store Home", store_path %></li>
 
     <% if !!@cart %>
-      <li> <%= link_to "Cart", cart_path(current_cart) %></li>
+      <li> <%= link_to "Cart", cart_path(current_cart) if current_cart %></li>
     <% end %>
 
     <% if user_signed_in? %>
        Signed in as <%= current_user.email %>
+      <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
     <% else %>
-      <li><%= link_to 'Sign in', sign_in_path %></li>
-      <li><%= link_to 'Sign up', sign_up_path %></li>
+      <li><%= link_to 'Sign in', new_user_session_path %></li>
+      <li><%= link_to 'Sign up', new_user_registration_path %></li>
     <% end %>
     </ul>
 </nav>

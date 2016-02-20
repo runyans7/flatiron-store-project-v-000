@@ -5,12 +5,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :carts
+  belongs_to :current_cart, class_name: 'Cart'
 
-  def current_cart=(cart)
-
-  end
-
-  def current_cart
-    carts[0]
-  end
 end
